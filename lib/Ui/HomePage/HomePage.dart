@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, right: 20),
+                padding: EdgeInsets.only(top: h(40.0), right: w(20)),
                 child: SvgPicture.asset(
                   "assets/images/profileplus.svg",
                   height: h(25),

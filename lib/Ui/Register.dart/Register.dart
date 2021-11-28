@@ -82,7 +82,7 @@ class _RegisterState extends State<Register> {
                 container(
                     color: Colors.grey[50],
                     hight: h(40),
-                    width: w(200),
+                    width: w(220),
                     child: text(
                         color: Colors.black,
                         text: "Create a new account",
@@ -98,7 +98,10 @@ class _RegisterState extends State<Register> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    container(width: w(100), child: text(text: "First Name")),
+                    container(
+                        color: Colors.grey[50],
+                        width: w(100),
+                        child: text(text: "First Name")),
                     container(
                       hight: h(44),
                       width: w(150),
@@ -119,7 +122,11 @@ class _RegisterState extends State<Register> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    container(width: w(100), child: text(text: "Last Name")),
+                    container(
+                      width: w(100),
+                      child: text(text: "Last Name"),
+                      color: Colors.grey[50],
+                    ),
                     container(
                         hight: h(44),
                         width: w(150),
@@ -280,7 +287,11 @@ class _RegisterState extends State<Register> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        container(width: hintwidth, child: text(text: "$hint")),
+        container(
+          width: hintwidth,
+          child: text(text: "$hint"),
+          color: Colors.grey[50],
+        ),
         container(
           hight: h(44),
           width: w(330),
