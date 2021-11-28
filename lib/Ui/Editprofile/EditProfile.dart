@@ -46,9 +46,14 @@ class _EditProfileState extends State<EditProfile> {
               backgroundColor: Colors.white,
               leading: Padding(
                   padding: const EdgeInsets.only(top: 10.0, left: 20),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.orange,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.orange,
+                    ),
                   )))),
       body: SingleChildScrollView(
         child: Container(
@@ -78,7 +83,10 @@ class _EditProfileState extends State<EditProfile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    container(width: w(100), child: text(text: "First Name")),
+                    container(
+                        color: Colors.grey[50],
+                        width: w(100),
+                        child: text(text: "First Name")),
                     container(
                       hight: h(44),
                       width: w(150),
@@ -217,7 +225,8 @@ Widget registertap(String hint, String inputhint, String validation,
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      container(width: hintwidth, child: text(text: "$hint")),
+      container(
+          color: Colors.grey[50], width: hintwidth, child: text(text: "$hint")),
       container(
         hight: hight == null ? h(44) : hight,
         width: w(330),

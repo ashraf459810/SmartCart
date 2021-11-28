@@ -20,9 +20,14 @@ class _TermsState extends State<Terms> {
                 backgroundColor: Colors.white,
                 leading: Padding(
                     padding: const EdgeInsets.only(top: 10.0, left: 20),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.orange,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.orange,
+                      ),
                     )))),
         body: Column(
           children: [

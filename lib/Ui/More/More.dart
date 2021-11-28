@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
@@ -42,8 +43,8 @@ class _MoreState extends State<More> {
             onTap: () {
               nav(context, Refund());
             },
-            child: sittingscontainer("Refund                        ",
-                "assets/images/settingsicon.svg"),
+            child:
+                sittingscontainer("Refund", "assets/images/settingsicon.svg"),
           ),
           SizedBox(
             height: h(40),
@@ -72,8 +73,8 @@ class _MoreState extends State<More> {
             onTap: () {
               nav(context, Privacy());
             },
-            child: sittingscontainer("Privacy                    ",
-                "assets/images/questionmark.svg"),
+            child:
+                sittingscontainer("Privacy", "assets/images/questionmark.svg"),
           ),
           SizedBox(
             height: h(40),
@@ -82,8 +83,7 @@ class _MoreState extends State<More> {
             onTap: () {
               _showMyDialog();
             },
-            child: sittingscontainer(
-                "Logout                    ", "assets/images/logouticin.svg"),
+            child: sittingscontainer("Logout", "assets/images/logouticin.svg"),
           ),
           SizedBox(
             height: h(40),
@@ -99,9 +99,15 @@ class _MoreState extends State<More> {
         width: w(300),
         borderRadius: 30,
         bordercolor: AppColor.maincolor,
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          SizedBox(
+            width: w(30),
+          ),
           SvgPicture.asset("$image", height: h(25), width: w(25)),
-          text(text: textt, fontsize: 18),
+          SizedBox(
+            width: w(30),
+          ),
+          container(width: w(200), child: text(text: textt, fontsize: 18)),
         ]));
   }
 
@@ -132,8 +138,8 @@ class _MoreState extends State<More> {
                 ),
               ),
               Positioned(
-                top: 500,
-                left: 37,
+                top: h(500),
+                left: w(37),
                 child: Center(
                   child: container(
                       hight: h(50),
@@ -145,13 +151,13 @@ class _MoreState extends State<More> {
                         child: text(
                             text: "Do you really want to logout?",
                             color: Colors.black,
-                            fontsize: 12),
+                            fontsize: 12.sp),
                       ))),
                 ),
               ),
               Positioned(
-                top: 580,
-                left: 80,
+                top: h(570),
+                left: w(80),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -166,19 +172,28 @@ class _MoreState extends State<More> {
                           width: w(100),
                           borderRadius: 30,
                           color: AppColor.maincolor,
-                          child: text(
-                              text: "Yes", color: Colors.white, fontsize: 14)),
+                          child: Center(
+                            child: text(
+                                text: "Yes", color: Colors.white, fontsize: 14),
+                          )),
                     ),
                     SizedBox(
                       width: w(10),
                     ),
-                    container(
-                        hight: h(30),
-                        width: w(100),
-                        borderRadius: 30,
-                        color: AppColor.maincolor,
-                        child: text(
-                            text: "No", color: Colors.white, fontsize: 14)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: container(
+                          hight: h(30),
+                          width: w(100),
+                          borderRadius: 30,
+                          color: AppColor.maincolor,
+                          child: Center(
+                            child: text(
+                                text: "No", color: Colors.white, fontsize: 14),
+                          )),
+                    ),
                   ],
                 ),
               )

@@ -26,9 +26,19 @@ class _MyOrdersState extends State<MyOrders> {
               backgroundColor: Colors.white,
               leading: Padding(
                   padding: const EdgeInsets.only(top: 10.0, left: 20),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.orange,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.orange,
+                      ),
+                    ),
                   )))),
       body: Container(
         height: size.height - h(50),

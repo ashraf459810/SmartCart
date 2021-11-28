@@ -20,9 +20,14 @@ class _PrivacyState extends State<Privacy> {
                 backgroundColor: Colors.white,
                 leading: Padding(
                     padding: const EdgeInsets.only(top: 10.0, left: 20),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.orange,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.orange,
+                      ),
                     )))),
         body: Column(
           children: [
@@ -34,7 +39,7 @@ class _PrivacyState extends State<Privacy> {
                 width: w(350),
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
+                    padding: EdgeInsets.all(w(20.0)),
                     child: Text(
                       "Lorem ipsumvolutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriur",
                       maxLines: 100,

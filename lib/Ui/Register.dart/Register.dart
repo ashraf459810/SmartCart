@@ -50,9 +50,14 @@ class _RegisterState extends State<Register> {
               backgroundColor: Colors.white,
               leading: Padding(
                   padding: const EdgeInsets.only(top: 10.0, left: 20),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.orange,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.orange,
+                    ),
                   )))),
       body: SingleChildScrollView(
         child: Container(
@@ -63,10 +68,10 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(
               height: h(100),
-              width: w(100),
+              width: w(150),
               child: SvgPicture.asset(
                 "assets/images/smartcart.svg",
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             SizedBox(

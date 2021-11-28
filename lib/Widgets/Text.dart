@@ -5,11 +5,13 @@ Widget text(
     Color color,
     double fontsize,
     FontWeight fontWeight,
-    String fontfamily}) {
+    String fontfamily,
+    TextDecoration textDecoration}) {
   return Text(
     text,
+    textAlign: TextAlign.center,
     style: TextStyle(
-        decoration: TextDecoration.none,
+        decoration: textDecoration ?? TextDecoration.none,
         fontFamily: "font",
         color: color,
         fontSize: fontsize,

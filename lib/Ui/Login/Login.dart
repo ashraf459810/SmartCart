@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Ui/ButtomNavBar/NavigationBar.dart';
@@ -32,9 +33,19 @@ class _LoginState extends State<Login> {
               backgroundColor: Colors.white,
               leading: Padding(
                   padding: const EdgeInsets.only(top: 10.0, left: 20),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.orange,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.orange,
+                      ),
+                    ),
                   )))),
       body: SingleChildScrollView(
         child: Container(
@@ -48,27 +59,31 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(
                 height: h(120),
-                width: w(124),
+                width: w(150),
                 child: SvgPicture.asset(
                   "assets/images/smartcart.svg",
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               SizedBox(
                 height: h(50),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    width: w(60),
+                  ),
                   container(
                       color: Colors.grey[50],
-                      hight: h(40),
-                      width: w(150),
                       child: text(
-                          color: Colors.black, text: "Log in", fontsize: 18)),
+                          color: Colors.black,
+                          text: "Log in",
+                          fontsize: 20.sp)),
                 ],
               ),
               SizedBox(
-                height: h(40),
+                height: h(20),
               ),
               container(
                   hight: h(60),
@@ -108,7 +123,7 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: h(30),
               ),
-              text(text: "Forget password?", color: Colors.black, fontsize: 16),
+              text(text: "Forgot password?", color: Colors.black, fontsize: 16),
               SizedBox(
                 height: h(40),
               ),
@@ -130,14 +145,29 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: h(50),
               ),
-              InkWell(
-                onTap: () {
-                  nav(context, Register());
-                },
-                child: text(
-                    text: "Register Are you a new customer?",
-                    color: Colors.black,
-                    fontsize: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  text(
+                      text: "Are you a new customer ?",
+                      color: Colors.black,
+                      fontsize: 16.sp),
+                  SizedBox(
+                    width: w(5),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      nav(context, Register());
+                    },
+                    child: text(
+                      textDecoration: TextDecoration.underline,
+                      text: "Register",
+                      color: AppColor.maincolor,
+                      fontWeight: FontWeight.bold,
+                      fontsize: 16.sp,
+                    ),
+                  )
+                ],
               ),
             ],
           ),

@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double itemcount = 20;
   ScrollController scrollController = ScrollController();
+  ScrollController scrollController2 = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,39 +52,45 @@ class _HomePageState extends State<HomePage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                Container(
-                  height: h(itemcount * 78.2),
-                  child: GridView.builder(
-                    controller: scrollController,
-                    scrollDirection: Axis.vertical,
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20),
-                    itemCount: itemcount.toInt(),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          print(index);
-                        },
-                        child: container(
-                            width: w(200),
-                            hight: h(100),
-                            color: Colors.white,
-                            borderRadius: 20,
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
-                              child: Image.network(
-                                "https://besthqwallpapers.com/Uploads/8-4-2021/161741/thumb2-adidas-orange-logo-4k-orange-neon-lights-creative-orange-abstract-background.jpg",
-                                height: h(133),
-                                width: w(200),
-                                fit: BoxFit.cover,
-                              ),
-                            )),
-                      );
-                    },
+                // container(color: Colors.red, hight: 1000, width: 100)
+
+                IgnorePointer(
+                  child: Container(
+                    height: h(itemcount * 79.2),
+                    child: GridView.builder(
+                      controller: scrollController2,
+                      physics: ScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics()),
+                      scrollDirection: Axis.vertical,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 3 / 2,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20),
+                      itemCount: itemcount.toInt(),
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            print(index);
+                          },
+                          child: container(
+                              width: w(200),
+                              hight: h(100),
+                              color: Colors.white,
+                              borderRadius: 20,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                child: Image.asset(
+                                  "assets/images/adidasicon.png",
+                                  height: h(133),
+                                  width: w(200),
+                                  fit: BoxFit.cover,
+                                ),
+                              )),
+                        );
+                      },
+                    ),
                   ),
                 )
               ],

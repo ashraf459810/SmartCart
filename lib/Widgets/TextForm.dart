@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:smartcart/Ui/HomePage/HomePage.dart';
 
 Widget textform(
     {TextEditingController controller,
@@ -18,7 +19,7 @@ Widget textform(
                 ? TextInputType.emailAddress
                 : TextInputType.text,
     decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(15),
+        contentPadding: EdgeInsets.all(h(10)),
         border: InputBorder.none,
         hintText: hint,
         isDense: true,

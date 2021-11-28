@@ -12,7 +12,7 @@ Widget container({
   return Container(
     height: hight,
     width: width,
-    child: Center(child: child),
+    child: child,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius ?? 0),
