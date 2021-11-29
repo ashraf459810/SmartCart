@@ -106,7 +106,10 @@ class _ChangePasswrodState extends State<ChangePasswrod> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        container(width: hintwidth, child: text(text: "$hint")),
+        container(
+            color: Colors.grey[50],
+            width: hintwidth,
+            child: text(text: "$hint")),
         container(
           hight: h(44),
           width: w(330),

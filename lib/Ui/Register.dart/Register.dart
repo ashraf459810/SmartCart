@@ -182,6 +182,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 container(
+                    color: Colors.grey[50],
                     width: w(150),
                     child: text(text: "City - Select a location")),
                 GestureDetector(

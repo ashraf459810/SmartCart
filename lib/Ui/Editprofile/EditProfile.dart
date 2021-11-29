@@ -107,7 +107,10 @@ class _EditProfileState extends State<EditProfile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    container(width: w(100), child: text(text: "Last Name")),
+                    container(
+                        width: w(100),
+                        child: text(text: "Last Name"),
+                        color: Colors.grey[50]),
                     container(
                         hight: h(44),
                         width: w(150),
@@ -151,6 +154,7 @@ class _EditProfileState extends State<EditProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 container(
+                    color: Colors.grey[50],
                     width: w(150),
                     child: text(text: "City - Select a location")),
                 GestureDetector(
