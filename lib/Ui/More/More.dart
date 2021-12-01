@@ -34,7 +34,7 @@ class _MoreState extends State<More> {
               nav(context, Notifications());
             },
             child: sittingscontainer(
-                "Notifications             ", "assets/images/alarmicon.svg"),
+                "Notifications", "assets/images/alarmicon.svg"),
           ),
           SizedBox(
             height: h(40),
@@ -99,15 +99,21 @@ class _MoreState extends State<More> {
         width: w(300),
         borderRadius: 30,
         bordercolor: AppColor.maincolor,
-        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          SizedBox(
-            width: w(30),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Row(
+            children: [
+              SvgPicture.asset("$image", height: h(25), width: w(25)),
+            ],
           ),
-          SvgPicture.asset("$image", height: h(25), width: w(25)),
-          SizedBox(
-            width: w(30),
+          Row(
+            children: [
+              container(
+                  alignment: Alignment.center,
+                  width: w(200),
+                  child: text(
+                      text: textt, fontsize: 18, textAlign: TextAlign.start)),
+            ],
           ),
-          container(width: w(200), child: text(text: textt, fontsize: 18)),
         ]));
   }
 

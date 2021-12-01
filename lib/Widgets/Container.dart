@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-Widget container({
-  double hight,
-  double width,
-  double borderRadius,
-  Color color,
-  Color bordercolor,
-  Widget child,
-  bool shadow,
-}) {
+Widget container(
+    {double hight,
+    double width,
+    double borderRadius,
+    Color color,
+    Color bordercolor,
+    Widget child,
+    bool shadow,
+    Alignment alignment}) {
   return Container(
+    alignment: alignment ?? Alignment.center,
     height: hight,
     width: width,
     child: child,
@@ -17,7 +18,8 @@ Widget container({
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius ?? 0),
       ),
-      border: Border.all(color: bordercolor ?? Colors.transparent),
+      border: Border.all(
+          color: bordercolor ?? Colors.transparent, style: BorderStyle.solid),
       boxShadow: [
         shadow ?? false
             ? BoxShadow(

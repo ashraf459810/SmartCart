@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.grey[50],
             expandedHeight: h(300),
             flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.only(right: 10, top: 100),
+                titlePadding: EdgeInsets.only(right: w(10), top: h(100)),
                 title: Center(
                   child: Image.asset(
                     "assets/images/homeimage.png",
@@ -80,38 +80,41 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             height: h(itemcount * 39.2),
-            child: GridView.builder(
-              controller: scrollController2,
-              physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
-              scrollDirection: Axis.vertical,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  mainAxisExtent: 60,
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 7 / 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10),
-              itemCount: itemcount.toInt(),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    nav(context, BrandItems());
-                  },
-                  child: container(
-                      bordercolor: AppColor.maincolor,
-                      width: w(150),
-                      hight: h(100),
-                      color: Colors.white,
-                      borderRadius: 20,
-                      child: Center(
-                        child: Image.asset(
-                          image,
-                          height: h(50),
-                          width: w(100),
-                          fit: BoxFit.contain,
-                        ),
-                      )),
-                );
-              },
+            child: Padding(
+              padding: EdgeInsets.all(h(8)),
+              child: GridView.builder(
+                controller: scrollController2,
+                physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+                scrollDirection: Axis.vertical,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    mainAxisExtent: 60,
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 7 / 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                itemCount: itemcount.toInt(),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      nav(context, BrandItems());
+                    },
+                    child: container(
+                        bordercolor: Colors.orange[900],
+                        width: w(150),
+                        hight: h(100),
+                        color: Colors.white,
+                        borderRadius: 20,
+                        child: Center(
+                          child: Image.asset(
+                            image,
+                            height: h(50),
+                            width: w(100),
+                            fit: BoxFit.contain,
+                          ),
+                        )),
+                  );
+                },
+              ),
             ),
           )
         ],
