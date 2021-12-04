@@ -9,10 +9,7 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(AppInitial());
 
-  @override
   Stream<AppState> mapEventToState(
     AppEvent event,
-  ) async* {
-    // TODO: implement mapEventToState
-  }
+  ) async* {}
 }

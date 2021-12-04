@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smartcart/Core/Consts.dart';
+
 import 'package:smartcart/Ui/HomePage/brand_items.dart';
 import 'package:smartcart/Widgets/Container.dart';
 import 'package:smartcart/Widgets/Nav.dart';
@@ -65,6 +65,7 @@ class _HomePageState extends State<HomePage> {
     return SliverList(
       delegate: SliverChildListDelegate(
         <Widget>[
+          SizedBox(height: h(10)),
           // container(color: Colors.red, hight: 1000, width: 100)
           Row(
             mainAxisAlignment: MainAxisAlignment.start,

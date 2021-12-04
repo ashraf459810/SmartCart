@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 Widget customlistview(
@@ -9,9 +7,11 @@ Widget customlistview(
     final direction,
     final double padding,
     final controller,
-    Function function}) {
+    Function function,
+    ScrollPhysics scrollPhysics}) {
   return ListView.builder(
-      physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: scrollPhysics ??
+          ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       shrinkWrap: true,
       controller: controller ?? ScrollController(),
       padding: EdgeInsets.symmetric(vertical: padding) ?? EdgeInsets.all(10),
