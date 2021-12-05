@@ -57,38 +57,50 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
       body: ListView(
         children: [
           SizedBox(
-            height: h(60),
+            height: h(40),
           ),
           Center(child: orderInfo("order title", "Laptop", w(70))),
           SizedBox(
-            height: h(20),
+            height: h(15),
           ),
           Center(
             child: orderInfo("Quantity", "1", w(70)),
           ),
           SizedBox(
-            height: h(20),
+            height: h(15),
           ),
           Center(
-            child: orderInfo("Note", "color red", w(70)),
+            child: orderInfo("Note", "color red", w(50)),
           ),
           SizedBox(
-            height: h(20),
+            height: h(15),
           ),
           Center(
             child: orderInfo("Location", "Erbil : NazNaz", w(70)),
           ),
           SizedBox(
-            height: h(20),
+            height: h(15),
           ),
           Center(
-            child: orderInfo("Wrap", "Gift", w(70)),
+            child: orderInfo("Wrap", "Gift", w(50)),
           ),
           SizedBox(
-            height: h(20),
+            height: h(15),
           ),
           Center(
-            child: orderInfo("Price", "1200USD", w(70)),
+            child: orderInfo("Price", "1200USD", w(50)),
+          ),
+          SizedBox(
+            height: h(15),
+          ),
+          Center(
+            child: orderInfo("Purchase Date:", "11/11/2021", w(100)),
+          ),
+          SizedBox(
+            height: h(15),
+          ),
+          Center(
+            child: orderInfo("Deliver Date::", "20/11/2021", w(90)),
           ),
         ],
       ),
@@ -101,9 +113,10 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         container(
+            alignment: Alignment.center,
             color: Colors.grey[50],
             width: hintwidth,
-            child: text(text: "$hint")),
+            child: text(text: "$hint", textAlign: TextAlign.start)),
         container(
           hight: hight == null ? h(44) : hight,
           width: w(330),
