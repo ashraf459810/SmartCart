@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:smartcart/Core/AppExcepition.dart';
 import 'package:http/http.dart' as http;
@@ -5,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'Http_Helper.dart';
 
 class IHttpHlper implements HttpHelper {
-  final String _baseUrl = "https://freemium.bitsblend.org/api";
+  final String _baseUrl = "http://smartcartiq.com/api";
   @override
   Future getrequest(String url) async {
     var responseJson;
@@ -21,9 +23,10 @@ class IHttpHlper implements HttpHelper {
     }
 
     final response = await http.get(Uri.parse(_baseUrl + url));
-    print(response.statusCode);
-    print("here from http $url");
 
+    log("here from http $url");
+    log(response.body);
+    log(response.statusCode.toString());
     responseJson = returnResponse(response);
 
     return responseJson;
@@ -47,6 +50,9 @@ class IHttpHlper implements HttpHelper {
           _baseUrl + url,
         ),
         body: body);
+    log("here from http $url");
+    log(response.body);
+    log(response.statusCode.toString());
     responseJson = returnResponse(response);
 
     return responseJson;
