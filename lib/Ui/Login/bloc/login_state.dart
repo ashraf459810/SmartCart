@@ -12,6 +12,9 @@ class Error extends LoginState {
 
   Error({this.error});
 }
-// class UserLoginState extends LoginState {
-//   final 
-// }
+
+class UserLoginState extends LoginState {
+  final LoginRegisterResponse loginResponse;
+
+  UserLoginState(this.loginResponse);
+}

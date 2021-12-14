@@ -12,12 +12,15 @@ class Error extends RegisterState {
 
   Error({this.error});
 }
-// class UserLoginState extends RegisterState {
-//   fina
-// }
 
 class CitiesState extends RegisterState {
-  final List<CitiesModel> cities;
+  final List<Datum> cities;
 
   CitiesState(this.cities);
+}
+
+class UserRegisterState extends RegisterState {
+  final LoginRegisterResponse loginRegisterResponse;
+
+  UserRegisterState(this.loginRegisterResponse);
 }

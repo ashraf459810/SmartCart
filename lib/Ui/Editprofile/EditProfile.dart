@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
-import 'package:smartcart/Ui/Register.dart/SelectLocation.dart';
+
 import 'package:smartcart/Widgets/Container.dart';
-import 'package:smartcart/Widgets/Nav.dart';
+
 import 'package:smartcart/Widgets/Text.dart';
 import 'package:smartcart/Widgets/TextForm.dart';
 
@@ -158,14 +158,7 @@ class _EditProfileState extends State<EditProfile> {
                     width: w(150),
                     child: text(text: "City - Select a location")),
                 GestureDetector(
-                  onTap: () {
-                    nav(context, SelectLocation(
-                      callback: (value) {
-                        chosenlocation = value;
-                        setState(() {});
-                      },
-                    ));
-                  },
+                  onTap: () {},
                   child: container(
                       hight: h(44),
                       width: w(330),

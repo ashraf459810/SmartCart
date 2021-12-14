@@ -28,15 +28,15 @@ class _DropDownState extends State<DropDown> {
             value: value,
             child: value is String
                 ? Center(child: new Text(value))
-                : Center(child: new Text(value.name)));
+                : Center(child: new Text(value.title)));
       }).toList(),
       onChanged: (value) {
         setState(() {
           widget.onchanged(value);
-          value is String ? chosenvalue = value : chosenvalue = value.name;
-          int index = 0;
-          index = widget.list.indexOf(value);
-          widget.getindex(index);
+          value is String ? chosenvalue = value : chosenvalue = value.title;
+          // int index = 0;
+          // index = widget.list.indexOf(value);
+          // widget.getindex(index);
         });
       },
     );

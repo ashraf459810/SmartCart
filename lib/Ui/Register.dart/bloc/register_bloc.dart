@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:smartcart/Data/Repository/IRepository.dart';
 import 'package:smartcart/Models/CitiesModel.dart';
+import 'package:smartcart/Models/login_response.dart';
+import 'package:smartcart/Models/register_body.dart';
 
 import '../../../injection.dart';
 
@@ -13,13 +15,27 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var repo = sl<IRepository>();
     on<RegisterEvent>((event, emit) async {
       if (event is CitiesEvent) {
+        // try {
+        emit(Loading());
+        CitiesModel response = await repo.getrequest(
+            ([response]) => citiesModelFromJson(response), "/Miscs/Cities");
+        emit(CitiesState(response.data));
+        // } catch (e) {
+        //   emit(Error(error: "error"));
+        // }
+      }
+      if (event is UserRegisterEvent) {
         try {
           emit(Loading());
-          List<CitiesModel> response = await repo.getrequest(
-              ([response]) => citiesModelFromJson(response), "/Miscs/Cities");
-          emit(CitiesState(response));
+          LoginRegisterResponse response = await repo.postrequest(
+              ([response]) => loginResponseFromJson(response),
+              "/Register",
+              registerBodyToJson(event.registerBody));
+          response.reason == null
+              ? emit(UserRegisterState(response))
+              : emit(Error(error: response.reason));
         } catch (e) {
-          emit(Error(error: e.toString()));
+          emit(Error(error: "error"));
         }
       }
     });
