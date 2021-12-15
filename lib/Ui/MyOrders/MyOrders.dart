@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Models/my_orders_model.dart';
 
@@ -50,123 +51,158 @@ class _MyOrdersState extends State<MyOrders> {
                         ),
                       ),
                     )))),
-        body: ListView(
-          children: [
-            SizedBox(
-              height: h(10),
-            ),
-            text(text: "My Orders", fontWeight: FontWeight.bold, fontsize: 20),
-            SizedBox(
-              height: h(10),
-            ),
-            Container(
-              child: BlocConsumer<MyordersBloc, MyordersState>(
-                listener: (context, state) {
-                  if (state is Error) {
-                    Toast.show(state.error, context);
-                  }
-                },
-                builder: (context, state) {
-                  if (state is MyordersInitial) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.orange,
-                      ),
-                    );
-                  }
-                  if (state is Loading) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.orange,
-                      ),
-                    );
-                  }
-                  if (state is GetOrderState) {
-                    items = state.myOrderModel.orderItems;
-                  }
+        body: items.isNotEmpty
+            ? ListView(
+                children: [
+                  SizedBox(
+                    height: h(10),
+                  ),
+                  text(
+                      text: "My Orders",
+                      fontWeight: FontWeight.bold,
+                      fontsize: 20),
+                  SizedBox(
+                    height: h(10),
+                  ),
+                  Container(
+                    child: BlocConsumer<MyordersBloc, MyordersState>(
+                      listener: (context, state) {
+                        if (state is Error) {
+                          Toast.show(state.error, context);
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is MyordersInitial) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.orange,
+                            ),
+                          );
+                        }
+                        if (state is Loading) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.orange,
+                            ),
+                          );
+                        }
+                        if (state is GetOrderState) {
+                          items = state.myOrderModel.orderItems;
+                        }
 
-                  return customlistview(
-                      controller: scrollController,
-                      scrollPhysics:
-                          ScrollPhysics(parent: NeverScrollableScrollPhysics()),
-                      direction: "vertical",
-                      hight: h(300),
-                      width: w(300),
-                      padding: 10,
-                      itemcount: items.length,
-                      function: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: h(20), vertical: w(10)),
-                          child: InkWell(
-                            onTap: () {
-                              nav(
-                                  context,
-                                  PreviousOrderDetails(
-                                      orderItem: items[index]));
-                            },
-                            child: container(
-                                hight: h(50),
-                                borderRadius: 30,
-                                bordercolor: Colors.orange[900],
-                                width: w(300),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: h(15),
-                                    ),
-                                    container(
-                                      width: w(240),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                        return customlistview(
+                            controller: scrollController,
+                            scrollPhysics: ScrollPhysics(
+                                parent: NeverScrollableScrollPhysics()),
+                            direction: "vertical",
+                            hight: h(300),
+                            width: w(300),
+                            padding: 10,
+                            itemcount: items.length,
+                            function: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: h(20), vertical: w(10)),
+                                child: InkWell(
+                                  onTap: () {
+                                    nav(
+                                        context,
+                                        PreviousOrderDetails(
+                                            orderItem: items[index]));
+                                  },
+                                  child: container(
+                                      hight: h(50),
+                                      borderRadius: 30,
+                                      bordercolor: Colors.orange[900],
+                                      width: w(300),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          // text(text: "car", fontsize: 18),
-                                          text(text: items[index].name),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
                                           container(
-                                              width: w(5),
-                                              child: text(text: "-")),
-                                          text(
-                                              text: items[index]
-                                                      .price
-                                                      .toString() +
-                                                  " USD")
+                                            width: w(240),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                // text(text: "car", fontsize: 18),
+                                                text(text: items[index].name),
+                                                container(
+                                                    width: w(5),
+                                                    child: text(text: "-")),
+                                                text(
+                                                    text: items[index]
+                                                            .price
+                                                            .toString() +
+                                                        " USD")
+                                              ],
+                                            ),
+                                          ),
                                         ],
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        );
-                      });
-                },
-              ),
-            ),
-            // SizedBox(
-            //   height: h(10),
-            // ),
-            InkWell(
-              onTap: () {
-                nav(context, NewOrder());
-              },
-              child: Padding(
-                padding: EdgeInsets.all(h(8)),
-                child: Center(
-                  child: container(
-                      hight: h(50),
-                      borderRadius: 30,
-                      color: AppColor.maincolor,
+                                      )),
+                                ),
+                              );
+                            });
+                      },
+                    ),
+                  ),
+                  // SizedBox(
+                  //   height: h(10),
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      nav(context, NewOrder());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(h(8)),
                       child: Center(
-                          child: text(
-                              text: "New Order",
-                              color: Colors.white,
-                              fontsize: 22))),
-                ),
+                        child: container(
+                            hight: h(50),
+                            borderRadius: 30,
+                            color: AppColor.maincolor,
+                            child: Center(
+                                child: text(
+                                    text: "New Order",
+                                    color: Colors.white,
+                                    fontsize: 22))),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : Column(
+                children: [
+                  container(
+                      color: Colors.grey[50],
+                      hight: h(200),
+                      child: text(
+                          text: "No Orders For You",
+                          color: Colors.orange,
+                          fontsize: 20.sp)),
+                  InkWell(
+                    onTap: () {
+                      nav(context, NewOrder());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(h(8)),
+                      child: Center(
+                        child: container(
+                            hight: h(50),
+                            borderRadius: 30,
+                            color: AppColor.maincolor,
+                            child: Center(
+                                child: text(
+                                    text: "New Order",
+                                    color: Colors.white,
+                                    fontsize: 22))),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

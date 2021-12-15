@@ -14,23 +14,23 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var repo = sl<IRepository>();
     on<RegisterEvent>((event, emit) async {
       if (event is CitiesEvent) {
-        // try {
-        emit(Loading());
-        CitiesModel response = await repo.getrequest(
-            ([response]) => citiesModelFromJson(response), "/Miscs/Cities");
-        emit(CitiesState(response.data));
-        // } catch (e) {
-        //   emit(Error(error: "error"));
-        // }
+        try {
+          emit(Loading());
+          CitiesModel response = await repo.getrequest(
+              ([response]) => citiesModelFromJson(response), "/Miscs/Cities");
+          emit(CitiesState(response.data));
+        } catch (e) {
+          emit(Error(error: "error"));
+        }
       }
       if (event is UserRegisterEvent) {
         try {
-          emit(Loading());
+          emit(LoadingRegister());
           LoginRegisterResponse response = await repo.postrequest(
               ([response]) => loginResponseFromJson(response),
               "/Register",
               event.registerBody);
-          if (response.reason == null) {
+          if (response.azsvr != "FAILED") {
             await repo.iprefsHelper.savetoken(response.apiToken);
             emit(UserRegisterState(response));
           } else {

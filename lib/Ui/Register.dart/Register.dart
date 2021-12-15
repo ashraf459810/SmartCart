@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -196,20 +198,16 @@ class _RegisterState extends State<Register> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BlocConsumer<RegisterBloc, RegisterState>(
-                          listener: (context, state) {
-                            if (state is Error) {
-                              Toast.show(state.error, context);
-                            }
-                            if (state is RegisterState) {
-                              nav(context, NavigationBar());
-                            }
-                          },
+                        BlocBuilder<RegisterBloc, RegisterState>(
                           builder: (context, state) {
-                            if (state is LoadingRegister) {
-                              return CircularProgressIndicator();
+                            if (state is Loading) {
+                              log("Loadingcities");
+                              return Center(
+                                  child: LinearProgressIndicator(
+                                      color: Colors.orange));
                             }
                             if (state is CitiesState) {
+                              log("citiesloaded");
                               cities = state.cities;
                             }
                             return container(
@@ -300,38 +298,54 @@ class _RegisterState extends State<Register> {
                   SizedBox(
                     height: h(20),
                   ),
-                  Builder(builder: (context) {
-                    return InkWell(
-                      onTap: () {
-                        var registerbody = new Map();
-                        final body = {
-                          'name': smartcartusername,
-                          'email': email,
-                          'phone': phone,
-                          "password": password,
-                          "address": address,
-                          "birthdate": "required",
-                          "genders_id": 0.toString(),
-                          "cities_id": cityid.toString()
-                        };
-                        registerbody.addAll(body);
+                  BlocConsumer<RegisterBloc, RegisterState>(
+                    listener: (context, state) {
+                      if (state is Error) {
+                        Toast.show(state.error, context);
+                      }
+                      if (state is UserRegisterState) {
+                        nav(context, NavigationBar());
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is LoadingRegister) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.orange,
+                          ),
+                        );
+                      }
+                      return GestureDetector(
+                          onTap: () {
+                            var registerbody = new Map();
+                            final body = {
+                              'name': smartcartusername,
+                              'email': email,
+                              'phone': phone,
+                              "password": password,
+                              "address": address,
+                              "birthdate": "required",
+                              "genders_id": 0.toString(),
+                              "cities_id": cityid.toString()
+                            };
+                            registerbody.addAll(body);
 
-                        context
-                            .read<RegisterBloc>()
-                            .add(UserRegisterEvent(body));
-                      },
-                      child: container(
-                          hight: h(60),
-                          width: w(300),
-                          borderRadius: 30,
-                          color: AppColor.maincolor,
-                          child: Center(
-                              child: text(
-                                  text: "Register",
-                                  color: Colors.white,
-                                  fontsize: 22))),
-                    );
-                  }),
+                            context
+                                .read<RegisterBloc>()
+                                .add(UserRegisterEvent(body));
+                          },
+                          child: container(
+                              hight: h(60),
+                              width: w(300),
+                              borderRadius: 30,
+                              color: AppColor.maincolor,
+                              child: Center(
+                                  child: text(
+                                      text: "Register",
+                                      color: Colors.white,
+                                      fontsize: 22))));
+                    },
+                  ),
                   SizedBox(
                     height: h(20),
                   ),

@@ -24,3 +24,5 @@ class GetCounriesState extends OrderState {
 
   GetCounriesState(this.countriesModel);
 }
+
+class LoadingCountries extends OrderState {}

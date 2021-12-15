@@ -147,12 +147,15 @@ class _NewOrderState extends State<NewOrder> {
                 ),
                 BlocBuilder<OrderBloc, OrderState>(
                   builder: (context, state) {
+                    if (state is LoadingCountries) {
+                      return Center(
+                          child:
+                              CircularProgressIndicator(color: Colors.orange));
+                    }
                     if (state is GetCounriesState) {
                       countries = state.countriesModel.data;
                     }
-                    if (state is PlaceOrderState) {
-                      Toast.show("your Order Added Successfully", context);
-                    }
+
                     return container(
                         hight: h(44),
                         width: w(330),
@@ -199,6 +202,7 @@ class _NewOrderState extends State<NewOrder> {
                     child: BlocConsumer<OrderBloc, OrderState>(
                       listener: (context, state) {
                         if (state is PlaceOrderState) {
+                          Toast.show("Order Placed Successfully", context);
                           nav(context, NavigationBar());
                         }
                       },

@@ -32,7 +32,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       }
       if (event is GetCounriesEvent) {
         try {
-          emit(Loading());
+          emit(LoadingCountries());
           final CountriesModel countriesModel = await repo.getrequest(
               ([response]) => countriesModelFromJson(response),
               "/Miscs/Countries");
