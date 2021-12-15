@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartcart/Core/Consts.dart';
+import 'package:smartcart/Models/my_orders_model.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
+
 import 'package:smartcart/Widgets/Container.dart';
 import 'package:smartcart/Widgets/Text.dart';
 
 class PreviousOrderDetails extends StatefulWidget {
-  PreviousOrderDetails({Key key}) : super(key: key);
+  final OrderItem orderItem;
+  PreviousOrderDetails({Key key, this.orderItem}) : super(key: key);
 
   @override
   _PreviousOrderDetailsState createState() => _PreviousOrderDetailsState();
@@ -45,7 +48,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                     children: [
                       // text(text: "Laptop", color: Colors.black),
                       text(
-                          text: "Status : Arrived",
+                          text: "Status : ${widget.orderItem.status.name}",
                           color: AppColor.maincolor,
                           fontWeight: FontWeight.bold,
                           fontsize: 16.sp),
@@ -61,38 +64,42 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
             height: h(40),
           ),
           Center(
-              child:
-                  orderInfo("order title", "Laptop", w(70), Colors.grey[50])),
+              child: orderInfo("order title", "${widget.orderItem.name}", w(70),
+                  Colors.grey[50])),
           SizedBox(
             height: h(15),
           ),
           Center(
-            child: orderInfo("Quantity", "1", w(70), Colors.grey[50]),
-          ),
-          SizedBox(
-            height: h(15),
-          ),
-          Center(
-            child: orderInfo("Note", "color red", w(50), Colors.grey[50]),
+            child: orderInfo("Quantity", "${widget.orderItem.quantity}", w(70),
+                Colors.grey[50]),
           ),
           SizedBox(
             height: h(15),
           ),
           Center(
-            child:
-                orderInfo("Location", "Erbil : NazNaz", w(70), Colors.grey[50]),
+            child: orderInfo(
+                "Note", "${widget.orderItem.notes}", w(50), Colors.grey[50]),
           ),
           SizedBox(
             height: h(15),
           ),
           Center(
-            child: orderInfo("Wrap", "Gift", w(50), Colors.grey[50]),
+            child: orderInfo("Location", "${widget.orderItem.address}", w(70),
+                Colors.grey[50]),
           ),
           SizedBox(
             height: h(15),
           ),
           Center(
-            child: orderInfo("Price", "1200USD", w(50), Colors.grey[50]),
+            child: orderInfo("Wrap", "${widget.orderItem.wrapType.name}", w(50),
+                Colors.grey[50]),
+          ),
+          SizedBox(
+            height: h(15),
+          ),
+          Center(
+            child: orderInfo("Price", "${widget.orderItem.price} USD", w(50),
+                Colors.grey[50]),
           ),
           SizedBox(
             height: h(70),

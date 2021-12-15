@@ -35,6 +35,6 @@ class IprefsHelper implements PrefsHelper {
 
   @override
   Future<String> getToken() async {
-    return (await getPrefs()).getString(Con.token);
+    return (await getPrefs()).getString(Con.token) ?? null;
   }
 }

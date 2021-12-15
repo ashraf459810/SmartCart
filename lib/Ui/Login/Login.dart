@@ -138,8 +138,13 @@ class _LoginState extends State<Login> {
                 Builder(builder: (context) {
                   return InkWell(
                     onTap: () {
-                      context.read<LoginBloc>().add(UserLoginEvent(
-                          password: password, userName: username));
+                      if (username != null && password != null) {
+                        context.read<LoginBloc>().add(UserLoginEvent(
+                            password: password, userName: username));
+                      } else {
+                        Toast.show("Enter name and password", context,
+                            backgroundColor: Colors.orange);
+                      }
                     },
                     child: BlocConsumer<LoginBloc, LoginState>(
                       listener: (context, state) {
@@ -153,7 +158,10 @@ class _LoginState extends State<Login> {
                       },
                       builder: (context, state) {
                         if (state is Loading) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(
+                              child: CircularProgressIndicator(
+                            backgroundColor: Colors.orange,
+                          ));
                         }
                         return container(
                             hight: h(60),

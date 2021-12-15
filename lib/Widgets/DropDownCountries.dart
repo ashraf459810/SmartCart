@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class DropDown extends StatefulWidget {
+class DropDownCountries extends StatefulWidget {
   final String chosenvalue;
   final String hint;
   final List<dynamic> list;
   final Function onchanged;
   final Function getindex;
-  DropDown(
+  DropDownCountries(
       {this.chosenvalue, this.hint, this.list, this.onchanged, this.getindex});
 
   @override
-  _DropDownState createState() => _DropDownState();
+  _DropDownCountriesState createState() => _DropDownCountriesState();
 }
 
-class _DropDownState extends State<DropDown> {
+class _DropDownCountriesState extends State<DropDownCountries> {
   String chosenvalue;
   @override
   Widget build(BuildContext context) {
@@ -28,17 +28,15 @@ class _DropDownState extends State<DropDown> {
             value: value,
             child: value is String
                 ? Center(child: new Text(value))
-                : Center(child: new Text(value.title ?? value.name)));
+                : Center(child: new Text(value.name)));
       }).toList(),
       onChanged: (value) {
         setState(() {
           widget.onchanged(value);
-          value is String
-              ? chosenvalue = value
-              : chosenvalue = value.title ?? value.name;
-          int index = 0;
-          index = widget.list.indexOf(value);
-          widget.getindex(index);
+          value is String ? chosenvalue = value : chosenvalue = value.name;
+          // int index = 0;
+          // index = widget.list.indexOf(value);
+          // widget.getindex(index);
         });
       },
     );
