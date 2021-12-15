@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:smartcart/Data/Repository/IRepository.dart';
 import 'package:smartcart/Models/CitiesModel.dart';
 import 'package:smartcart/Models/login_response.dart';
-import 'package:smartcart/Models/register_body.dart';
 
 import '../../../injection.dart';
 
@@ -30,10 +29,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           LoginRegisterResponse response = await repo.postrequest(
               ([response]) => loginResponseFromJson(response),
               "/Register",
-              registerBodyToJson(event.registerBody));
-          response.reason == null
-              ? emit(UserRegisterState(response))
-              : emit(Error(error: response.reason));
+              event.registerBody);
+          if (response.reason == null) {
+            await repo.iprefsHelper.savetoken(response.apiToken);
+            emit(UserRegisterState(response));
+          } else {
+            emit(Error(error: response.reason));
+          }
         } catch (e) {
           emit(Error(error: "error"));
         }

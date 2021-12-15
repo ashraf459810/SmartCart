@@ -7,6 +7,8 @@ class RegisterInitial extends RegisterState {}
 
 class Loading extends RegisterState {}
 
+class LoadingRegister extends RegisterState {}
+
 class Error extends RegisterState {
   final String error;
 

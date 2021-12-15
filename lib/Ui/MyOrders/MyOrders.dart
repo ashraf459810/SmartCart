@@ -21,7 +21,8 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
-  MyOrderModel myOrderModel = MyOrderModel();
+  List<OrderItem> items = [];
+
   ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,6 @@ class _MyOrdersState extends State<MyOrders> {
               height: h(10),
             ),
             Container(
-              // height: h(550),
               child: BlocConsumer<MyordersBloc, MyordersState>(
                 listener: (context, state) {
                   if (state is Error) {
@@ -82,7 +82,7 @@ class _MyOrdersState extends State<MyOrders> {
                     );
                   }
                   if (state is GetOrderState) {
-                    myOrderModel = state.myOrderModel;
+                    items = state.myOrderModel.orderItems;
                   }
 
                   return customlistview(
@@ -93,7 +93,7 @@ class _MyOrdersState extends State<MyOrders> {
                       hight: h(300),
                       width: w(300),
                       padding: 10,
-                      itemcount: myOrderModel.orderItems.length,
+                      itemcount: items.length,
                       function: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(
@@ -103,8 +103,7 @@ class _MyOrdersState extends State<MyOrders> {
                               nav(
                                   context,
                                   PreviousOrderDetails(
-                                      orderItem:
-                                          myOrderModel.orderItems[index]));
+                                      orderItem: items[index]));
                             },
                             child: container(
                                 hight: h(50),
@@ -124,15 +123,13 @@ class _MyOrdersState extends State<MyOrders> {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           // text(text: "car", fontsize: 18),
-                                          text(
-                                              text: myOrderModel
-                                                  .orderItems[index].name),
+                                          text(text: items[index].name),
                                           container(
                                               width: w(5),
                                               child: text(text: "-")),
                                           text(
-                                              text: myOrderModel
-                                                      .orderItems[index].price
+                                              text: items[index]
+                                                      .price
                                                       .toString() +
                                                   " USD")
                                         ],

@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Models/CitiesModel.dart';
 import 'package:smartcart/Ui/ButtomNavBar/NavigationBar.dart';
+
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
 import 'package:smartcart/Ui/Login/Login.dart';
 
@@ -197,16 +196,20 @@ class _RegisterState extends State<Register> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BlocBuilder<RegisterBloc, RegisterState>(
-                          builder: (context, state) {
+                        BlocConsumer<RegisterBloc, RegisterState>(
+                          listener: (context, state) {
                             if (state is Error) {
                               Toast.show(state.error, context);
                             }
-                            if (state is Loading) {
+                            if (state is RegisterState) {
+                              nav(context, NavigationBar());
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is LoadingRegister) {
                               return CircularProgressIndicator();
                             }
                             if (state is CitiesState) {
-                              log("here from state");
                               cities = state.cities;
                             }
                             return container(
@@ -223,7 +226,7 @@ class _RegisterState extends State<Register> {
                                       address = val.title;
                                       cityid = val.id;
                                     },
-                                    getindex: () {},
+                                    getindex: (val) {},
                                     list: cities,
                                   )),
                             );
@@ -297,21 +300,38 @@ class _RegisterState extends State<Register> {
                   SizedBox(
                     height: h(20),
                   ),
-                  InkWell(
-                    onTap: () {
-                      nav(context, NavigationBar());
-                    },
-                    child: container(
-                        hight: h(60),
-                        width: w(300),
-                        borderRadius: 30,
-                        color: AppColor.maincolor,
-                        child: Center(
-                            child: text(
-                                text: "Register",
-                                color: Colors.white,
-                                fontsize: 22))),
-                  ),
+                  Builder(builder: (context) {
+                    return InkWell(
+                      onTap: () {
+                        var registerbody = new Map();
+                        final body = {
+                          'name': smartcartusername,
+                          'email': email,
+                          'phone': phone,
+                          "password": password,
+                          "address": address,
+                          "birthdate": "required",
+                          "genders_id": 0.toString(),
+                          "cities_id": cityid.toString()
+                        };
+                        registerbody.addAll(body);
+
+                        context
+                            .read<RegisterBloc>()
+                            .add(UserRegisterEvent(body));
+                      },
+                      child: container(
+                          hight: h(60),
+                          width: w(300),
+                          borderRadius: 30,
+                          color: AppColor.maincolor,
+                          child: Center(
+                              child: text(
+                                  text: "Register",
+                                  color: Colors.white,
+                                  fontsize: 22))),
+                    );
+                  }),
                   SizedBox(
                     height: h(20),
                   ),

@@ -237,7 +237,7 @@ class OrderItem {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         deletedAt: json["deleted_at"],
-        deliveryType: DeliveryType.fromJson(json["delivery_type"]),
+        // deliveryType: DeliveryType.fromJson(json["delivery_type"]),
         lastUpdateUser: User.fromJson(json["last_update_user"]),
         cancelReason: json["cancel_reason"],
         refundReason: json["refund_reason"],

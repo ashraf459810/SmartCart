@@ -6,7 +6,7 @@ abstract class RegisterEvent {}
 class CitiesEvent extends RegisterEvent {}
 
 class UserRegisterEvent extends RegisterEvent {
-  final RegisterBody registerBody;
+  final registerBody;
 
   UserRegisterEvent(this.registerBody);
 }

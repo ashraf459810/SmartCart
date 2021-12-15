@@ -22,7 +22,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         try {
           String token = await iprefsHelper.getToken();
           emit(Loading());
-          final PlaceOrderResponse placeOrderResponse = await repo.postrequest(
+          final PlaceOrderResponse placeOrderResponse = await repo.getrequest(
               ([response]) => placeOrderResponseFromJson(response),
               "/OrderItems/Store/?api_token=$token&name=${event.parms.name}&link=${event.parms.link}&quantity=${event.parms.quantity}&delivery_types_id=${event.parms.deliveryTypeId}&countries_id=${event.parms.counrtyId}&wrap_types_id=${event.parms.wrapType}&notes=${event.parms.note}");
           emit(PlaceOrderState(placeOrderResponse));

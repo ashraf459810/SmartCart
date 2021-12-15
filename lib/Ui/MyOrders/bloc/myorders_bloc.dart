@@ -14,17 +14,17 @@ class MyordersBloc extends Bloc<MyordersEvent, MyordersState> {
     var repo = sl<IRepository>();
     on<MyordersEvent>((event, emit) async {
       if (event is GetOrdersEvent) {
-        try {
-          emit(Loading());
-          IprefsHelper iprefsHelper = IprefsHelper();
-          String token = await iprefsHelper.getToken();
-          MyOrderModel myOrderModel = await repo.getrequest(
-              ([response]) => myOrderModelFromJson(response),
-              "/OrderItems?api_token=$token");
-          emit(GetOrderState(myOrderModel));
-        } catch (e) {
-          emit(Error("error"));
-        }
+        // try {
+        emit(Loading());
+        IprefsHelper iprefsHelper = IprefsHelper();
+        String token = await iprefsHelper.getToken();
+        MyOrderModel myOrderModel = await repo.getrequest(
+            ([response]) => myOrderModelFromJson(response),
+            "/OrderItems?api_token=$token");
+        emit(GetOrderState(myOrderModel));
+        // } catch (e) {
+        //   emit(Error("error"));
+        // }
       }
     });
   }
