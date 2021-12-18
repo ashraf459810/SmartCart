@@ -121,7 +121,7 @@ class _NewOrderState extends State<NewOrder> {
                         chosenlocation = value;
                       },
                       getindex: (val) {
-                        locationId = val.toString();
+                        locationId = (val + 1).toString();
                       },
                     )),
                 SizedBox(

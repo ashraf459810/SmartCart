@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smartcart/Core/Consts.dart';
 import 'package:smartcart/Models/CitiesModel.dart';
@@ -30,8 +31,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   String chosenlocation;
   bool isCheck = false;
-  String firstname;
-  String lastname;
+  // String firstname;
+  // String lastname;
   String smartcartusername;
   String password;
   String repasswrod;
@@ -50,6 +51,7 @@ class _RegisterState extends State<Register> {
   TextEditingController cityc = TextEditingController();
   TextEditingController addressc = TextEditingController();
   List<Datum> cities = [];
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,8 @@ class _RegisterState extends State<Register> {
                       ),
                     )))),
         body: SingleChildScrollView(
-          child: Container(
+          child: Form(
+            key: formKey,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -104,93 +107,70 @@ class _RegisterState extends State<Register> {
                     ],
                   ),
                   SizedBox(
-                    height: h(25),
+                    height: h(20),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          container(
-                              color: Colors.grey[50],
-                              width: w(100),
-                              child: text(text: "First Name")),
-                          container(
-                            hight: h(44),
-                            width: w(150),
-                            borderRadius: 30,
-                            bordercolor: Colors.orange[900],
-                            child: textform(
-                                hint: "first name",
-                                validation: "name",
-                                controller: firstnamec,
-                                function: (value) {
-                                  firstname = value;
-                                },
-                                hintsize: 14,
-                                hintColor: Colors.grey),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          container(
-                            width: w(100),
-                            child: text(text: "Last Name"),
-                            color: Colors.grey[50],
-                          ),
-                          container(
-                              hight: h(44),
-                              width: w(150),
-                              borderRadius: 30,
-                              bordercolor: Colors.orange[900],
-                              child: textform(
-                                  hint: "last name",
-                                  validation: "name",
-                                  controller: lastnamec,
-                                  function: (value) {
-                                    lastname = value;
-                                  },
-                                  hintsize: 14,
-                                  hintColor: Colors.grey))
-                        ],
-                      )
-                    ],
+                  registertap(
+                    "SmartCart Username",
+                    "smartCart name",
+                    "name",
+                    (val) {
+                      smartcartusername = val;
+                    },
+                    w(140),
+                    smartcartusernamec,
                   ),
                   SizedBox(
                     height: h(20),
                   ),
-                  registertap("SmartCart Username", "smartCart name", "name",
-                      (val) {
-                    smartcartusername = val;
-                  }, w(140), smartcartusernamec),
+                  registertap(
+                    "Password",
+                    "******",
+                    "password",
+                    (val) {
+                      password = val;
+                    },
+                    w(90),
+                    passwrodc,
+                  ),
                   SizedBox(
                     height: h(20),
                   ),
-                  registertap("Password", "******", "password", (val) {
-                    password = val;
-                  }, w(90), passwrodc),
+                  registertap(
+                    "RetypePassword",
+                    "******",
+                    "password",
+                    (val) {
+                      repasswrod = val;
+                    },
+                    w(120),
+                    repasswrodc,
+                  ),
                   SizedBox(
                     height: h(20),
                   ),
-                  registertap("RetypePassword", "******", "password", (val) {
-                    repasswrod = val;
-                  }, w(120), repasswrodc),
+                  registertap(
+                    "EmailAddress",
+                    "jandou@hotmail.com",
+                    "email",
+                    (val) {
+                      email = val;
+                    },
+                    w(100),
+                    emailc,
+                  ),
                   SizedBox(
                     height: h(20),
                   ),
-                  registertap("EmailAddress", "jandou@hotmail.com", "email",
-                      (val) {
-                    email = val;
-                  }, w(100), emailc),
-                  SizedBox(
-                    height: h(20),
+                  registertap(
+                    "Phone number",
+                    "75076117",
+                    "number",
+                    (val) {
+                      phone = val;
+                    },
+                    w(100),
+                    phonec,
                   ),
-                  registertap("Phone number", "75076117", "number", (val) {
-                    phone = val;
-                  }, w(100), phonec),
                   SizedBox(
                     height: h(20),
                   ),
@@ -218,7 +198,7 @@ class _RegisterState extends State<Register> {
                               child: container(
                                   width: w(250),
                                   child: DropDown(
-                                    hint: "City - Select a location",
+                                    hint: "Select City",
                                     chosenvalue: address,
                                     onchanged: (val) {
                                       address = val.title;
@@ -317,22 +297,32 @@ class _RegisterState extends State<Register> {
                       }
                       return GestureDetector(
                           onTap: () {
-                            var registerbody = new Map();
-                            final body = {
-                              'name': smartcartusername,
-                              'email': email,
-                              'phone': phone,
-                              "password": password,
-                              "address": address,
-                              "birthdate": "required",
-                              "genders_id": 0.toString(),
-                              "cities_id": cityid.toString()
-                            };
-                            registerbody.addAll(body);
+                            if (smartcartusername != null &&
+                                email != null &&
+                                phone != null &&
+                                password != null &&
+                                address != null &&
+                                cityid != null &&
+                                isCheck) {
+                              var registerbody = new Map();
+                              final body = {
+                                'name': smartcartusername,
+                                'email': email,
+                                'phone': phone,
+                                "password": password,
+                                "address": address,
+                                "birthdate": "required",
+                                "genders_id": 0.toString(),
+                                "cities_id": cityid.toString()
+                              };
+                              registerbody.addAll(body);
 
-                            context
-                                .read<RegisterBloc>()
-                                .add(UserRegisterEvent(body));
+                              context
+                                  .read<RegisterBloc>()
+                                  .add(UserRegisterEvent(body));
+                            } else {
+                              Toast.show("please Complete your info", context);
+                            }
                           },
                           child: container(
                               hight: h(60),
@@ -366,8 +356,14 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget registertap(String hint, String inputhint, String validation,
-      Function val, double hintwidth, TextEditingController controller) {
+  Widget registertap(
+    String hint,
+    String inputhint,
+    String validation,
+    Function val,
+    double hintwidth,
+    TextEditingController controller,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -377,18 +373,20 @@ class _RegisterState extends State<Register> {
           color: Colors.grey[50],
         ),
         container(
+          // color: Colors.red,
           hight: h(44),
           width: w(330),
           borderRadius: 30,
           bordercolor: Colors.orange[900],
+
           child: textform(
-              hint: "$inputhint",
+              hint: inputhint,
               validation: "$validation",
               controller: controller,
               function: (value) {
                 val(value);
               },
-              hintsize: 14,
+              hintsize: 14.sp,
               hintColor: Colors.grey),
         ),
       ],

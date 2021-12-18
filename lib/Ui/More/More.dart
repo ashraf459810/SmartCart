@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smartcart/Core/Consts.dart';
+import 'package:smartcart/Ui/About_us/AboutUs.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
 import 'package:smartcart/Ui/Login/Login.dart';
 import 'package:smartcart/Ui/Notifications/Notifications.dart';
@@ -27,7 +28,7 @@ class _MoreState extends State<More> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: h(140),
+            height: h(80),
           ),
           InkWell(
             onTap: () {
@@ -75,6 +76,16 @@ class _MoreState extends State<More> {
             },
             child:
                 sittingscontainer("Privacy", "assets/images/questionmark.svg"),
+          ),
+          SizedBox(
+            height: h(40),
+          ),
+          InkWell(
+            onTap: () {
+              nav(context, AboutUs());
+            },
+            child:
+                sittingscontainer("About us", "assets/images/questionmark.svg"),
           ),
           SizedBox(
             height: h(40),

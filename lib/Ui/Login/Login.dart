@@ -132,7 +132,7 @@ class _LoginState extends State<Login> {
                               backgroundColor: Colors.orange);
                         }
                         if (state is UserLoginState) {
-                          nav(context, NavigationBar());
+                          navWithReplaceAll(context, NavigationBar());
                         }
                       },
                       builder: (context, state) {
