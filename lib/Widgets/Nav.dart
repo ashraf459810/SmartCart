@@ -16,7 +16,11 @@ Future navWithReplacement(context, widget) {
 }
 
 Future navWithReplaceAll(context, widget) {
-  return Navigator.of(context).pushReplacement(MaterialPageRoute(
-    builder: (context) => widget,
-  ));
+  return Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (BuildContext context) => widget,
+    ),
+    (route) => false,
+  );
 }

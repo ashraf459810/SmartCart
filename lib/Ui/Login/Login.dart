@@ -31,27 +31,6 @@ class _LoginState extends State<Login> {
     return BlocProvider(
       create: (context) => LoginBloc(),
       child: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(h(60)),
-            child: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.white,
-                leading: Padding(
-                    padding: const EdgeInsets.only(top: 10.0, left: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.orange,
-                        ),
-                      ),
-                    )))),
         body: Container(
           height: size.height,
           width: size.width,
@@ -60,7 +39,7 @@ class _LoginState extends State<Login> {
             child: ListView(
               children: [
                 SizedBox(
-                  height: h(10),
+                  height: h(70),
                 ),
                 SizedBox(
                   height: h(120),
@@ -71,7 +50,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 SizedBox(
-                  height: h(50),
+                  height: h(70),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +112,7 @@ class _LoginState extends State<Login> {
                     color: Colors.black,
                     fontsize: 16),
                 SizedBox(
-                  height: h(40),
+                  height: h(100),
                 ),
                 Builder(builder: (context) {
                   return InkWell(

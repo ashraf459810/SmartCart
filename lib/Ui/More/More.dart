@@ -169,9 +169,7 @@ class _MoreState extends State<More> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Login(),
-                        ));
+                        navWithReplaceAll(context, Login());
                       },
                       child: container(
                           hight: h(30),

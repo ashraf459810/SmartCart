@@ -98,7 +98,10 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
             height: h(15),
           ),
           Center(
-            child: orderInfo("Price", "${widget.orderItem.price} USD", w(50),
+            child: orderInfo(
+                "Price",
+                "${widget.orderItem.price ?? "Not Defined yet"} USD",
+                w(50),
                 Colors.grey[50]),
           ),
           SizedBox(
