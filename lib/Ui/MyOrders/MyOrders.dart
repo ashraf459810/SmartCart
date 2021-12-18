@@ -67,7 +67,8 @@ class _MyOrdersState extends State<MyOrders> {
                 child: BlocConsumer<MyordersBloc, MyordersState>(
                   listener: (context, state) {
                     if (state is Error) {
-                      Toast.show(state.error, context);
+                      Toast.show(state.error, context,
+                          backgroundColor: Colors.orange);
                     }
                   },
                   builder: (context, state) {

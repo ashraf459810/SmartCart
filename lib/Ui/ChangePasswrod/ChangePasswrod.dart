@@ -78,7 +78,8 @@ class _ChangePasswrodState extends State<ChangePasswrod> {
                 if (password == null ||
                     repasswrod == null ||
                     oldpassword == null) {
-                  Toast.show("please fill all the fields", context);
+                  Toast.show("please fill all the fields", context,
+                      backgroundColor: Colors.orange);
                 }
               },
               child: container(

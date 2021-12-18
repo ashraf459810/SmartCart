@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
 import 'package:smartcart/Widgets/Text.dart';
 
@@ -10,13 +11,25 @@ class Privacy extends StatefulWidget {
 }
 
 class _PrivacyState extends State<Privacy> {
+  String data;
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(h(60)),
             child: AppBar(
+                centerTitle: true,
                 elevation: 0,
+                title: text(
+                  text: "Privacy Ploicy",
+                  color: Colors.black,
+                ),
                 backgroundColor: Colors.white,
                 leading: Padding(
                     padding: const EdgeInsets.only(top: 10.0, left: 20),
@@ -29,27 +42,20 @@ class _PrivacyState extends State<Privacy> {
                         color: Colors.orange,
                       ),
                     )))),
-        body: Column(
+        body: ListView(
           children: [
-            SizedBox(height: h(10)),
-            text(text: "Privacy", fontsize: 20, fontWeight: FontWeight.bold),
-            SizedBox(height: h(40)),
-            SingleChildScrollView(
-              child: Container(
-                width: w(350),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(w(20.0)),
-                    child: Text(
-                      "Lorem ipsumvolutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriur",
-                      maxLines: 100,
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                ),
-              ),
+            Padding(
+              padding: EdgeInsets.all(w(11.0)),
+              child: text(text: data ?? "", textAlign: TextAlign.left),
             ),
           ],
         ));
+  }
+
+  void loadData() async {
+    final _loadedData = await rootBundle.loadString("assets/privacy.txt");
+    setState(() {
+      data = _loadedData;
+    });
   }
 }

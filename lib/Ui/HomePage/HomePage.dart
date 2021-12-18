@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
             ],
           )),
       body: CustomScrollView(
+        shrinkWrap: true,
         physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         controller: scrollController,
         slivers: <Widget>[
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             height: h(10),
           ),
           Container(
-            height: h(itemcount * 39.2),
+            height: h(itemcount * 40.2),
             child: Padding(
               padding: EdgeInsets.all(h(8)),
               child: GridView.builder(

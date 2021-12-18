@@ -281,7 +281,8 @@ class _RegisterState extends State<Register> {
                   BlocConsumer<RegisterBloc, RegisterState>(
                     listener: (context, state) {
                       if (state is Error) {
-                        Toast.show(state.error, context);
+                        Toast.show(state.error, context,
+                            backgroundColor: Colors.orange);
                       }
                       if (state is UserRegisterState) {
                         nav(context, NavigationBar());
@@ -321,7 +322,8 @@ class _RegisterState extends State<Register> {
                                   .read<RegisterBloc>()
                                   .add(UserRegisterEvent(body));
                             } else {
-                              Toast.show("please Complete your info", context);
+                              Toast.show("please Complete your info", context,
+                                  backgroundColor: Colors.orange);
                             }
                           },
                           child: container(

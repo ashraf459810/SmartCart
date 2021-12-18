@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartcart/Ui/HomePage/HomePage.dart';
 import 'package:smartcart/Widgets/Text.dart';
@@ -15,7 +15,6 @@ class _AboutUsState extends State<AboutUs> {
   String data;
   @override
   void initState() {
-    loadData();
     super.initState();
   }
 
@@ -32,7 +31,7 @@ class _AboutUsState extends State<AboutUs> {
             child: text(
                 textAlign: TextAlign.left,
                 text: "About us",
-                color: Colors.orange,
+                color: Colors.orange[900],
                 fontWeight: FontWeight.bold,
                 fontsize: 20.sp),
           ),
@@ -58,7 +57,7 @@ class _AboutUsState extends State<AboutUs> {
             child: text(
                 textAlign: TextAlign.left,
                 text: "Our Values",
-                color: Colors.orange,
+                color: Colors.orange[900],
                 fontWeight: FontWeight.bold,
                 fontsize: 20.sp),
           ),
@@ -81,7 +80,7 @@ class _AboutUsState extends State<AboutUs> {
             child: text(
                 textAlign: TextAlign.left,
                 text: "Vision Statement",
-                color: Colors.orange,
+                color: Colors.orange[900],
                 fontWeight: FontWeight.bold,
                 fontsize: 20.sp),
           ),
@@ -105,7 +104,7 @@ class _AboutUsState extends State<AboutUs> {
             child: text(
                 textAlign: TextAlign.left,
                 text: "Mission Statement",
-                color: Colors.orange,
+                color: Colors.orange[900],
                 fontWeight: FontWeight.bold,
                 fontsize: 20.sp),
           ),
@@ -123,12 +122,5 @@ class _AboutUsState extends State<AboutUs> {
         ],
       ),
     );
-  }
-
-  void loadData() async {
-    final _loadedData = await rootBundle.loadString("assets/about_us.txt");
-    setState(() {
-      data = _loadedData;
-    });
   }
 }

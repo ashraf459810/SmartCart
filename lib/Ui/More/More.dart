@@ -65,7 +65,7 @@ class _MoreState extends State<More> {
               nav(context, Terms());
             },
             child: sittingscontainer(
-                "Terms & Conditions", "assets/images/questionmark.svg"),
+                "Return & Refund Policy", "assets/images/questionmark.svg"),
           ),
           SizedBox(
             height: h(40),

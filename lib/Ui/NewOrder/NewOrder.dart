@@ -196,13 +196,15 @@ class _NewOrderState extends State<NewOrder> {
                             .read<OrderBloc>()
                             .add(PlaceOrderEvent(placeOrderParms));
                       } else {
-                        Toast.show("please complet your information", context);
+                        Toast.show("please complet your information", context,
+                            backgroundColor: Colors.orange);
                       }
                     },
                     child: BlocConsumer<OrderBloc, OrderState>(
                       listener: (context, state) {
                         if (state is PlaceOrderState) {
-                          Toast.show("Order Placed Successfully", context);
+                          Toast.show("Order Placed Successfully", context,
+                              backgroundColor: Colors.orange);
                           nav(context, NavigationBar());
                         }
                       },
